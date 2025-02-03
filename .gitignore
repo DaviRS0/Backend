@@ -1,0 +1,37 @@
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Visual Studio local config
+.vs/
+
+# Node modules
+node_modules/
+node_modules/.package-lock.json
+
+# Google Cloud ignore file
+.gcloudignore
+
+# Git attributes
+.gitattributes
