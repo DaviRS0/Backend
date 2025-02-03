@@ -5,6 +5,8 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5000;
+const host = '0.0.0.0'; // Bind to all network interfaces
+
 
 app.use(express.json());
 
@@ -89,7 +91,6 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+app.listen(port, host, () => {
+    console.log(`Server is running on http://${host}:${port}`);
 });
