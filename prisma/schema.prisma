@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -70,4 +67,10 @@ model Order {
   order_day      DateTime
   payment_method String
   customer       Customer @relation(fields: [customer_id], references: [customers_id])
+}
+
+model pSuggestions {
+  id        Int      @id @default(autoincrement())
+  name      String
+  priority  Int
 }

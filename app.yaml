@@ -5,3 +5,4 @@ env_variables:
   DB_USER: 'cartbutler8946'
   DB_PASSWORD: 'conestoga8946'
   DB_NAME: 'cartbutler8946'
+  DATABASE_URL: 'postgresql://cartbutler8946:conestoga8946@104.197.180.231:5432/cartbutler8946'
