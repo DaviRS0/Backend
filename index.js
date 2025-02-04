@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const multer = require('multer');
@@ -5,8 +7,7 @@ const path = require('path');
 const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5000;
-const host = '0.0.0.0'; // Bind to all network interfaces
-
+const host = 'localhost'; // Bind to localhost
 
 app.use(express.json());
 
@@ -33,6 +34,11 @@ const upload = multer({ storage: storage });
 // Serve static files from the "uploads" directory
 app.use('/uploads', express.static('uploads'));
 
+// Root route
+app.get('/', (req, res) => {
+    res.send('Welcome to the CartButler API');
+});
+
 // Endpoint to upload an image
 app.post('/upload', upload.single('image'), (req, res) => {
     if (!req.file) {
@@ -44,10 +50,11 @@ app.post('/upload', upload.single('image'), (req, res) => {
 // Example endpoint to list all categories
 app.get('/categories', async (req, res) => {
     try {
-        const categories = await prisma.category.findMany();
+        const categories = await prisma.categories.findMany();
         res.json(categories);
     } catch (err) {
-        res.status(500).json({ error: 'Database query error' });
+        console.error('Database query error:', err.message);
+        res.status(500).json({ error: 'Database query error', details: err.message });
     }
 });
 
@@ -64,8 +71,7 @@ app.get('/suggestions', async (req, res) => {
 
         const conditions = searchTerms.map(term => ({
             name: {
-                contains: term,
-                mode: 'insensitive' // case-insensitive
+                contains: term.toLowerCase()
             }
         }));
 
@@ -81,7 +87,8 @@ app.get('/suggestions', async (req, res) => {
 
         res.json(pSuggestions);
     } catch (err) {
-        res.status(500).json({ error: 'Database query error' });
+        console.error('Database query error:', err.message);
+        res.status(500).json({ error: 'Database query error', details: err.message });
     }
 });
 
