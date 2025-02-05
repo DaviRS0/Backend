@@ -36,7 +36,7 @@ app.use('/uploads', express.static(uploadsDir));
 
 // Root route
 app.get('/', (req, res) => {
-    res.send('Welcome to the CartButler API');
+    res.send('Welcome to the CartButler API this screen is just a landing page');
 });
 
 // Endpoint to upload an image
