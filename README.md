@@ -8,8 +8,6 @@ CartButler API is a Node.js application that provides various endpoints for mana
 - [Usage](#usage)
 - [Endpoints](#endpoints)
 - [Environment Variables](#environment-variables)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
